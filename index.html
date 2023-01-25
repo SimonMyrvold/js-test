@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <section id="mainPage">
+
+        <div class="title">
+            <h1 id="title">Team Maker</h1>
+        </div>
+
+        <section id="userinterface">
+            
+            <div class="userinterfacesection">
+                <h1>People</h1>
+                <div>
+                    <div id="peopleList">
+
+                    </div>
+                    <input type="text" id="peopleInput" placeholder="Enter people">
+                    <button id="addPeople">Add</button>
+                </div>
+            </div>
+            
+            <div class="userinterfacesection">
+                <h1>Result</h1>
+                <div id="currentselected" style="display: flex;">
+                    <h2 id="currentName" class="currentselected">placeholder name</h2>
+                    <h2 id="currentTeam" class="currentselected">placeholder team</h2>
+                </div>
+                <div>
+                    <button id="randomize">Randomize</button>
+                    <button id="reset">Reset</button>
+                </div>
+            </div>
+            
+            <div class="userinterfacesection">
+                <h1>Teams</h1>
+                <div>
+                    <div id="teamsList">
+
+                    </div>
+                    <input type="text" id="teamsInput" placeholder="Enter Team / Category">
+                    <button id="addTeams">Add</button>
+                </div>
+            </div>
+            
+        </section>
+
+    </section>
+
+    <script src="index.js"></script>
+</body>
+</html>
