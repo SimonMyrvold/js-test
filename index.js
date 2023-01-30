@@ -129,6 +129,16 @@ document.getElementById('teamsList').addEventListener('click', function(e) {
     document.getElementById('history').innerHTML += '<li>' + 'Team: ' + randomTeams + '<br>' + 'People: ' + randomPeople1 + ' and ' + randomPeople2 + '</li>';
   });
 
+  document.getElementById('history').addEventListener('click', function(e) {
+    if (e.target && e.target.nodeName == 'LI') {
+        let index = history.indexOf(e.target.innerHTML);
+        if (index > -1) {
+            history.splice(index, 1);
+        }
+        e.target.remove();
+    }
+    });
+
     window.onload = function() {
         if (localStorage.getItem('history')) {
             history = JSON.parse(localStorage.getItem('history'));
