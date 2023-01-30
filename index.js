@@ -95,55 +95,50 @@ document.getElementById('teamsList').addEventListener('click', function(e) {
   });
   
 
-// randomize name and team
-
-document.getElementById('randomize').addEventListener('click', function randomize() {
+  
+  
+  // randomize name and team
+  
+  document.getElementById('randomize').addEventListener('click', function randomize() {
     if (allpeople.length < 2 || Allteams.length === 0) {
-    alert('Please add atleast 2 people and teams first!');
-    return;
+      alert('Please add at least 2 people and teams first!');
+      return;
     }
     
     let randomPeople1 = allpeople[Math.floor(Math.random() * allpeople.length)];
     let randomPeople2 = allpeople[Math.floor(Math.random() * allpeople.length)];
     
     while (randomPeople1 === randomPeople2) {
-    randomPeople2 = allpeople[Math.floor(Math.random() * allpeople.length)];
+      randomPeople2 = allpeople[Math.floor(Math.random() * allpeople.length)];
     }
     
     randomTeams = Allteams[Math.floor(Math.random() * Allteams.length)];
+
+    history.push('Team: ' + randomTeams + '<br>' + 'People: ' + randomPeople1 + ' and ' + randomPeople2);
+    localStorage.setItem("history", JSON.stringify(history));
     
     document.getElementById('result').innerHTML =
-    'Team: ' +
-    randomTeams +
-    '<br>' +
-    'People: ' +
-    randomPeople1 +
-    ' and ' +
-    randomPeople2;
-    
-    localStorage.setItem(
-    'Random People and Team',
-    JSON.stringify({
-    people: [randomPeople1, randomPeople2],
-    team: randomTeams
-})
-);
+      'Team: ' +
+      randomTeams +
+      '<br>' +
+      'People: ' +
+      randomPeople1 +
+      ' and ' +
+      randomPeople2;
 
-    history.push('Team: ' + randomTeams + ' People: ' + randomPeople1 + ' and ' + randomPeople2 + '<br>');
-
-    document.getElementById('history').innerHTML = history;
-
-    localStorage.setItem(
-        'history',
-        JSON.stringify({
-        people: [randomPeople1, randomPeople2],
-        team: randomTeams
-    })
-    );
-    
-    });
+    document.getElementById('history').innerHTML += '<li>' + 'Team: ' + randomTeams + '<br>' + 'People: ' + randomPeople1 + ' and ' + randomPeople2 + '</li>';
+  });
 
     window.onload = function() {
+        if (localStorage.getItem('history')) {
+            history = JSON.parse(localStorage.getItem('history'));
+            document.getElementById('history').innerHTML = '';
+            document.getElementById('result').innerHTML = history[history.length - 1];
+            for(let i = 0; i < history.length; i++){
+                document.getElementById('history').innerHTML += '<li>' + history[i] + '</li>';
+            }
+        }
+
         if (localStorage.getItem('allpeople') && localStorage.getItem('Allteams')) {
             allpeople = JSON.parse(localStorage.getItem('allpeople'));
             Allteams = JSON.parse(localStorage.getItem('Allteams'));
@@ -158,35 +153,6 @@ document.getElementById('randomize').addEventListener('click', function randomiz
             }
         }
 
-        if (localStorage.getItem('Random People and Team')) {
-            const randomPeopleAndTeam = JSON.parse(
-            localStorage.getItem('Random People and Team') || '{}'
-            );
-            document.getElementById('result').innerHTML =
-            'Team: ' +
-            randomPeopleAndTeam.team +
-            '<br>' +
-            'People: ' +
-            randomPeopleAndTeam.people[0] +
-            ' and ' +
-            randomPeopleAndTeam.people[1];
-            
-        }
-
-        if (localStorage.getItem('history')) {
-            const history = JSON.parse(
-            localStorage.getItem('history') || '{}'
-            );
-            document.getElementById('history').innerHTML =
-            'Team: ' +
-            history.team +
-            '<br>' +
-            'People: ' +
-            history.people[0] +
-            ' and ' +
-            history.people[1];
-            
-        }
     };
     
 document.getElementById('reset').addEventListener('click', function() {
