@@ -136,6 +136,7 @@ document.getElementById('teamsList').addEventListener('click', function(e) {
             history.splice(index, 1);
         }
         e.target.remove();
+        localStorage.setItem("history", JSON.stringify(history));
     }
     });
 
